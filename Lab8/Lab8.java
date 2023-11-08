@@ -19,10 +19,24 @@ public class Lab8 {
      * @param filename the path to the CSV file
      */
     public static void loadFromCSV(String filename) {
-        //Delete the following SOP statement
-        System.out.println();
-        System.out.println("Needs to load deafult data");
-        System.out.println("This method (loadFromCSV) has not been implemented yet");
+       try(BufferedReader reader = new BufferedReader(new FileReader(filename))){
+        reader.readLine();
+            String line;
+            while((line = reader.readLine()) != null){
+                String[] values =  line.split(",");
+                if(values.length >= 3){
+                    float magnitude = Float.parseFloat(values[4]);
+                    String date = values[0];
+                    String place = values[13];
+
+                    Earthquake a = new Earthquake(magnitude, place, date);
+                     bsTree.add(a);
+                 }
+            }
+         }catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -35,11 +49,12 @@ public class Lab8 {
 
 
     public static void main(String[] args) {
+        
 
         //Initialize the binary search tree (will be empty)
         bsTree = new EarthquakeBinarySearchTree();
 
-        //Load default data to the BSTree
+        //Load default data to the BSTree.
         loadFromCSV("earthquakes.csv");
 
         System.out.println();
@@ -97,7 +112,7 @@ public class Lab8 {
         double magnitude = scanner.nextDouble();
         Earthquake result = bsTree.search(magnitude);
         if (result != null) {
-            System.out.println("Earthquake found: " + result);
+            System.out.println("Earthquake found: " + "Earthquake "+ "{magnitude = " + result.getMagnitude() + ", place= " + result.getPlace() + ", date= " + result.getDate() + "}");
         } else {
             System.out.println("No earthquake with the given magnitude found.");
         }

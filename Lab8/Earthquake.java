@@ -10,13 +10,15 @@ public class Earthquake {
    public double magnitude;
    public String date;
    public String place;
+   public Earthquake left;
+   public Earthquake right;
 
-   public void Earthquake(){
+   public Earthquake(){
    }
-   public void Earthquake(double magnitude, String date, String place){
+   public Earthquake(double magnitude, String place, String date){
        this.magnitude = magnitude;
        this.date = date;
-       this.place = date;
+       this.place = place;
    }
    public void setMagnitude(double magnitude) {
        this.magnitude = magnitude;
@@ -38,5 +40,11 @@ public class Earthquake {
 
     public String getPlace() {
         return place;
+    }
+    public void setLeft(Earthquake left){
+        this.left = left;
+    }
+    public void setRight(Earthquake right){
+        this.right = right;
     }
 }

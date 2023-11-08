@@ -15,8 +15,30 @@ public class EarthquakeBinarySearchTree {
      * @return True if the earthquake was added to the tree
      */
     public boolean add(Earthquake quake) {
-        System.out.println("This method (add) has not been implemented yet");
-        return false;
+        if(root == null){
+            root = quake;
+            return true;
+        }
+        Earthquake parent = null;
+        Earthquake current = root;
+        while(current != null){
+            if(quake.getMagnitude() < current.getMagnitude()){
+                parent = current;
+                current = current.left;
+            }
+            else if(quake.getMagnitude() > current.getMagnitude()){
+                parent = current;
+                current = current.right;
+            }
+            else 
+                return false;
+        }
+        if(quake.getMagnitude() < parent.getMagnitude())
+            parent.left = quake;
+        else
+            parent.right = quake;
+        return true;
+        
     }
 
     /**
@@ -27,7 +49,17 @@ public class EarthquakeBinarySearchTree {
      * @return An earthquake object or null
      */
     public Earthquake search(double targetMagnitude) {
-        return null;
+        Earthquake current = root;
+        while(current != null){
+            if(targetMagnitude< current.getMagnitude())
+                current = current.left;
+            if(targetMagnitude > current.getMagnitude())
+                current = current.right;
+
+            else if(current.getMagnitude() == targetMagnitude)
+                return current;
+        } 
+            return null;
     }
 
     /**
@@ -45,6 +77,11 @@ public class EarthquakeBinarySearchTree {
      * @param current
      */
     private void inOrderTraversal(Earthquake current) {
-        System.out.println("This method (inOrderTraversal) has not been implemented yet");
+        if(current !=null){
+            inOrderTraversal(current.left);
+            System.out.println("Earthquake "+ "{magnitude = " + current.getMagnitude() + ", place= " + current.getPlace() + ", date= " + current.getDate() + "}" );
+            inOrderTraversal(current.right);
+            
+        }
     }
 }
