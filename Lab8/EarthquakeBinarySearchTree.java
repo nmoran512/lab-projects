@@ -79,7 +79,7 @@ public class EarthquakeBinarySearchTree {
     private void inOrderTraversal(Earthquake current) {
         if(current !=null){
             inOrderTraversal(current.left);
-            System.out.println("Earthquake "+ "{magnitude = " + current.getMagnitude() + ", place= " + current.getPlace() + ", date= " + current.getDate() + "}" );
+            System.out.println("Earthquake "+ "{magnitude = " + current.getMagnitude() + ", place = " + current.getPlace() + ", date= " + current.getDate() + "}" );
             inOrderTraversal(current.right);
             
         }

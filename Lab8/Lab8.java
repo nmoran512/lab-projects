@@ -112,7 +112,7 @@ public class Lab8 {
         double magnitude = scanner.nextDouble();
         Earthquake result = bsTree.search(magnitude);
         if (result != null) {
-            System.out.println("Earthquake found: " + "Earthquake "+ "{magnitude = " + result.getMagnitude() + ", place= " + result.getPlace() + ", date= " + result.getDate() + "}");
+            System.out.println("Earthquake found: " + "Earthquake "+ "{magnitude = " + result.getMagnitude() + ", place = " + result.getPlace() + ", date= " + result.getDate() + "}");
         } else {
             System.out.println("No earthquake with the given magnitude found.");
         }
